@@ -1,0 +1,99 @@
+* {
+	dark-primary-color: #202225;
+	dark-secondary-color: #292B2F;
+	dark-tertiary-color: #2F3136;
+	white-text-color: #FFFFFF;
+	light-text-color: #CCCCCC;
+	gray-text-color: #999999;
+	button-color: #7289DA;
+	text-bar-color: #40444B;
+}
+
+.primary-root {
+	-fx-background-color: dark-primary-color;
+}
+
+.secondary-root {
+	-fx-background-color: dark-secondary-color;
+}
+
+.tertiary-root {
+	-fx-background-color: dark-tertiary-color;
+}
+
+.scroll-pane, .viewport {
+    -fx-background-color: dark-tertiary-color;
+	-fx-border-color: dark-tertiary-color;
+}
+
+.scroll-bar:vertical {
+    -fx-background-color:transparent;
+}
+
+.scroll-bar:vertical .track {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0em;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color: white-text-color;
+}
+
+.text-field {
+    -fx-background-color: dark-tertiary-color , dark-tertiary-color , text-bar-color;
+	-fx-text-fill: white-text-color;
+	-fx-fill: white-text-color;
+}
+
+.context-menu {
+ -fx-background-color: dark-tertiary-color;
+ -fx-text-fill: blue;
+}
+
+.menu-item .label {
+  -fx-text-fill: white-text-color;
+}
+
+.label {
+	-fx-text-fill: white-text-color;
+	-fx-font-size: 15px;
+}
+
+.small-text {
+	-fx-text-fill: white-text-color;
+	-fx-font-size: 9px;
+}
+
+.button {
+	-fx-background-color: button-color;
+	-fx-text-fill: text-bar-color;
+	-fx-pref-height: 25;
+	-fx-pref-width: 80;
+}
+
+.progress-bar .track {
+  <!-- -fx-background-color: tertiary-color;
+  -fx-control-inner-background: light-text-color;
+}
+
+.progress-bar .bar {
+    -fx-accent: button-color;
+}
+
+.choice-box {
+  -fx-background-color: text-bar-color;
+  -fx-mark-color: button-color;
+}
+
+.list-view .scroll-bar:vertical .increment-arrow,
+.list-view .scroll-bar:vertical .decrement-arrow,
+.list-view .scroll-bar:vertical .increment-button,
+.list-view .scroll-bar:vertical .decrement-button {
+    -fx-padding:0;
+}
+
+.line {
+	-fx-stroke: button-color;
+	-fx-stroke-width: 2px;
+}
