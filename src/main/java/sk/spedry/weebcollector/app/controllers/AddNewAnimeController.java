@@ -27,7 +27,7 @@ public class AddNewAnimeController extends ClientMessageSender implements Initia
     @FXML
     private TextField animeNameTextField;
     @FXML
-    private ChoiceBox<CodeTable> serverChoiceBox;
+    private TextField botTextField;
     @FXML
     private ChoiceBox<CodeTable> qualityChoiceBox;
     @FXML
@@ -51,18 +51,17 @@ public class AddNewAnimeController extends ClientMessageSender implements Initia
     @FXML
     public void onActionSave() {
         logger.info("TODO save button --> sending new anime to bot");
-        WCMAnimeEntry wcmAnimeEntry;
-        if (numberOfEpisodesTextField.getText().isEmpty()) {
-            wcmAnimeEntry = new WCMAnimeEntry(animeNameTextField.getText(),
-                    qualityChoiceBox.getValue().getName(),
-                    serverChoiceBox.getValue().getName());
-        } else {
-            wcmAnimeEntry = new WCMAnimeEntry(animeNameTextField.getText(),
-                    qualityChoiceBox.getValue().getName(),
-                    serverChoiceBox.getValue().getName(),
-                    numberOfEpisodesTextField.getText());
-        }
-        sendMessage(new WCMessage("addNewAnimeEntry", wcmAnimeEntry));
+        String botName = null, numberOfEp = null;
+        if (!numberOfEpisodesTextField.getText().isEmpty())
+            numberOfEp = numberOfEpisodesTextField.getText();
+        if (!botTextField.getText().isEmpty())
+            botName = botTextField.getText();
+
+        sendMessage(new WCMessage("addNewAnimeEntry", new WCMAnimeEntry(
+                animeNameTextField.getText(),
+                qualityChoiceBox.getValue().getName(),
+                botName,
+                numberOfEp)));
         //TODO
         // ADD OPTIONS TO CHOOSE IF USER WANT TO CLOSE STAGE
         // AFTER ADDING NEW ANIME ENTRY
@@ -79,7 +78,6 @@ public class AddNewAnimeController extends ClientMessageSender implements Initia
     private void initChoiceBox() {
         logger.debug("initializing Choice Box");
         qualityChoiceBox.getItems().setAll(qualityTypeObservableList);
-        serverChoiceBox.getItems().setAll(ircServerObservableList);
         for (CodeTable codeTable : ircServerObservableList) {
             logger.info(codeTable.getName());
         }
