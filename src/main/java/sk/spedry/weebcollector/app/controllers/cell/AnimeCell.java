@@ -48,7 +48,7 @@ public class AnimeCell extends ListCell<WCMAnimeEntry> {
 
         if (WCMAnimeEntry != null && !empty) {
             animeName.setText(WCMAnimeEntry.getAnimeName());
-            numberOfEpisodes.setText("15/" + WCMAnimeEntry.getNumberOfEpisode());
+            numberOfEpisodes.setText("15/" + WCMAnimeEntry.getNumberOfEpisodes());
             setGraphic(animeEntry);
         }
     }
