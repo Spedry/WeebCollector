@@ -77,7 +77,7 @@ public class WeebCollectorController extends ClientMessageSender implements Init
             Scene newScene = new Scene(loader.load());
             popup.setScene(newScene);
             popup.show();
-            preferences.onActionShowServer();
+            preferences.onActionShowSetup();
         } catch (IOException e) {
             logger.error("FXML loader", e);
         }
@@ -106,7 +106,6 @@ public class WeebCollectorController extends ClientMessageSender implements Init
     @FXML
     public void onActionSwap(ActionEvent actionEvent) {
         logger.info("TODO swap button");
-        wcmAnimeEntryObservableList.add(new WCMAnimeEntry("Tensei Shitara Slime Datta Ken", "480p", "nsf"));
     }
 
     @FXML
