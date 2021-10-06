@@ -31,7 +31,7 @@ public class PreferencesPopupController extends ClientMessageSender {
         sendMessage(new WCMessage("getSetup"));
     }
 
-    @FXML
+    /*@FXML
     public void onActionShowServer() {
         try {
             FXMLLoader loader = new FXMLLoader(WCApplication.class.getResource("fxml/right-pane-server.fxml"));
@@ -44,7 +44,7 @@ public class PreferencesPopupController extends ClientMessageSender {
         } catch (IOException e) {
             logger.error("onActionShowPreferences - loader load", e);
         }
-    }
+    }*/
 
     @FXML
     public void onActionShowSetup() {
