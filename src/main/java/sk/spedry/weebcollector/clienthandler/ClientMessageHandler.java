@@ -22,7 +22,7 @@ public class ClientMessageHandler implements Runnable {
     private final int port;
 
     {
-        hostname = "192.168.1.30";
+        hostname = "localhost";
         port = 50000;
     }
     @Getter
@@ -86,11 +86,6 @@ public class ClientMessageHandler implements Runnable {
                 WCMessage wcm = wcMsgQueue.take();
                 logger.debug("Received id: " + wcm.getMessageId());
                 switch (wcm.getMessageId()) {
-                    case "serverList":
-                    case "getServerList":
-
-                        wcWork.serverList(wcm);
-                        break;
                     case "addNewAnimeEntry":
                     case "getAnimeList":
                         wcWork.addNewAnimeEntry(wcm);
