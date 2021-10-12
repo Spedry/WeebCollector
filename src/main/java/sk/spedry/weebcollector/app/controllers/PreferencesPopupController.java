@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 import sk.spedry.weebcollector.WCApplication;
 import sk.spedry.weebcollector.app.controllers.preferencescontrollers.ServerSettings;
 import sk.spedry.weebcollector.app.controllers.preferencescontrollers.SetupSettings;
+import sk.spedry.weebcollector.app.controllers.util.WCMSetup;
 import sk.spedry.weebcollector.app.controllers.util.WCMessage;
 import sk.spedry.weebcollector.clienthandler.ClientMessageSender;
 
@@ -20,11 +21,10 @@ public class PreferencesPopupController extends ClientMessageSender {
     private final Logger logger = LogManager.getLogger(this.getClass());
 
     @FXML
-    private AnchorPane rightSideOfSplitPane = new AnchorPane();
+    private AnchorPane rightSideOfSplitPane;
     private String rightPaneText;
 
-    public static String userName = "";
-    public static String downloadFolder = "";
+    public static WCMSetup setup;
 
     public PreferencesPopupController(PrintWriter out) {
         super(out);
@@ -54,9 +54,7 @@ public class PreferencesPopupController extends ClientMessageSender {
                 rightPaneText = "setupSettings";
                 logger.debug("Showing setup settings on right side");
                 loader.setController(new SetupSettings(getOut(),
-                        rightSideOfSplitPane.getScene().getWindow(),
-                        userName,
-                        downloadFolder));
+                        rightSideOfSplitPane.getScene().getWindow()));
                 rightSideOfSplitPane.getChildren().setAll((Node) loader.load());
             }
         } catch (IOException e) {
