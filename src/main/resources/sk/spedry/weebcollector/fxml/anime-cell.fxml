@@ -6,10 +6,10 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 
-<HBox fx:id="animeEntry" alignment="CENTER_LEFT" fillHeight="false" focusTraversable="true" maxHeight="30.0" maxWidth="1.7976931348623157E308" minHeight="30.0" minWidth="-Infinity" prefHeight="30.0" stylesheets="@../css/anime-entry.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+<HBox fx:id="animeEntry" alignment="CENTER_RIGHT" fillHeight="false" focusTraversable="true" maxHeight="30.0" maxWidth="1.7976931348623157E308" minHeight="30.0" minWidth="-Infinity" prefHeight="30.0" stylesheets="@../css/anime-entry.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="animeName" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="20.0" prefWidth="170.0" text="Tensei Shitara Slime Datta Ken" />
-      <Label fx:id="numberOfEpisodes" alignment="CENTER" maxWidth="40.0" minHeight="20.0" prefHeight="20.0" prefWidth="40.0" text="24/24" />
+      <Label fx:id="animeName" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="20.0" text="The Defective" HBox.hgrow="ALWAYS" />
+      <Label fx:id="numberOfEpisodes" alignment="CENTER" maxWidth="50.0" minHeight="20.0" prefHeight="20.0" prefWidth="50.0" text="24/24" />
       <Button fx:id="deleteEntryButton" alignment="CENTER" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#onActionDeleteEntry" prefHeight="30.0" prefWidth="30.0">
          <graphic>
             <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
