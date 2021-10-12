@@ -72,9 +72,9 @@
                   <MenuItem mnemonicParsing="false" text="Quit" />
                 </items>
               </Menu>
-              <Menu mnemonicParsing="false" text="Settings">
+              <Menu mnemonicParsing="false" text="Options">
                 <items>
-                  <MenuItem mnemonicParsing="false" onAction="#onActionOpenPreferences" text="Preferences..." />
+                  <MenuItem mnemonicParsing="false" onAction="#onActionOpenPreferences" text="Settings" />
                 </items>
               </Menu>
               <Menu mnemonicParsing="false" text="Help">
