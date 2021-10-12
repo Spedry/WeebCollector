@@ -152,7 +152,6 @@ public class WeebCollectorController extends ClientMessageSender implements Init
 
     private void initObservableList() {
         logger.debug("Initializing server observable list");
-        sendMessage(new WCMessage("getServerList"));
         sendMessage(new WCMessage("getAnimeList"));
     }
 
