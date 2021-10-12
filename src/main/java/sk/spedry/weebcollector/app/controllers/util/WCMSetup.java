@@ -7,9 +7,15 @@ public class WCMSetup {
     private final String userName;
     @Getter
     private final String downloadFolder;
+    @Getter
+    private final String serverName;
+    @Getter
+    private final String channelName;
 
-    public WCMSetup(String userName, String downloadFolder) {
+    public WCMSetup(String userName, String downloadFolder, String serverName, String channelName) {
         this.userName = userName;
         this.downloadFolder = downloadFolder;
+        this.serverName = serverName;
+        this.channelName = channelName;
     }
 }
