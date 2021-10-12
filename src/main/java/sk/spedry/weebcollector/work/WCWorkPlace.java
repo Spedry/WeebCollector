@@ -21,15 +21,6 @@ public class WCWorkPlace {
 
     private final WCUtilManager manager = new WCUtilManager();
 
-    public void serverList(WCMessage wcMessage) {
-        final ObservableList<CodeTable> ircServerObservableList = AddNewAnimeController.ircServerObservableList;
-        ircServerObservableList.clear();
-        ServerList serverList = new Gson().fromJson(wcMessage.getMessageBody(), ServerList.class);
-        for (WCMServer server : serverList.getServerList()) {
-            ircServerObservableList.add(manager.wcmServerToCodeTable(server));
-        }
-    }
-
     public void addNewAnimeEntry(WCMessage wcMessage) {
         final ObservableList<WCMAnimeEntry> wcmAnimeEntryObservableList = WeebCollectorController.wcmAnimeEntryObservableList;
         wcmAnimeEntryObservableList.clear();
@@ -41,9 +32,6 @@ public class WCWorkPlace {
     }
 
     public void setSetup(WCMessage wcMessage) {
-        WCMSetup setup = new Gson().fromJson(wcMessage.getMessageBody(), WCMSetup.class);
-        PreferencesPopupController.userName = setup.getUserName();
-        logger.info(setup.getDownloadFolder());
-        PreferencesPopupController.downloadFolder = setup.getDownloadFolder();
+        PreferencesPopupController.setup = new Gson().fromJson(wcMessage.getMessageBody(), WCMSetup.class);
     }
 }
