@@ -40,8 +40,6 @@ public class AddNewAnimeController extends ClientMessageSender implements Initia
                     new CodeTable(3, "720p"),
                     new CodeTable(4, "1080p"));
 
-    public static ObservableList<CodeTable> ircServerObservableList = FXCollections.observableArrayList();
-
     public AddNewAnimeController(PrintWriter out) {
         super(out);
 
@@ -78,9 +76,6 @@ public class AddNewAnimeController extends ClientMessageSender implements Initia
     private void initChoiceBox() {
         logger.debug("initializing Choice Box");
         qualityChoiceBox.getItems().setAll(qualityTypeObservableList);
-        for (CodeTable codeTable : ircServerObservableList) {
-            logger.info(codeTable.getName());
-        }
     }
 
     @Override
