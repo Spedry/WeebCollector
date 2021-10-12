@@ -7,22 +7,29 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<SplitPane dividerPositions="0.23745819397993312" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="primary-root" stylesheets="@../css/main-window.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
-  <items>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="140.0" styleClass="primary-root">
-         <children>
-            <VBox alignment="TOP_CENTER" layoutX="48.0" layoutY="112.0" spacing="5.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
+
+<AnchorPane maxWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <SplitPane dividerPositions="0.23745819397993312" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="primary-root" stylesheets="@../css/main-window.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="140.0" styleClass="primary-root">
                <children>
-                  <Button mnemonicParsing="false" onAction="#onActionShowSetup" text="Setup" />
+                  <VBox alignment="TOP_CENTER" layoutX="48.0" layoutY="112.0" spacing="5.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#onActionShowSetup" text="Setup" />
+                     </children>
+                  </VBox>
                </children>
-            </VBox>
-         </children>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets></AnchorPane>
-    <AnchorPane fx:id="rightSideOfSplitPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="477.0" styleClass="secondary-root">
-         <children>
-            <Label layoutX="189.0" layoutY="189.0" text="RIGHT SIDE" />
-         </children></AnchorPane>
-  </items>
-</SplitPane>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </AnchorPane>
+          <AnchorPane fx:id="rightSideOfSplitPane" minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="477.0" styleClass="secondary-root">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" text="RIGHT SIDE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>
