@@ -16,6 +16,9 @@ public class WCMAnimeEntry {
     @Getter
     @Setter
     private String numberOfEpisodes;
+    @Getter
+    @Setter
+    private String numberOfDownloadedEpisodes;
     // TODO FOR FUTURE private String status;
 
     public WCMAnimeEntry(@NonNull String anime, @NonNull String typeOfQuality, String botName, String numberOfEpisodes) {
@@ -23,5 +26,13 @@ public class WCMAnimeEntry {
         this.typeOfQuality = typeOfQuality;
         this.botName = botName;
         this.numberOfEpisodes = numberOfEpisodes;
+    }
+    // TODO DELETE LATER
+    public WCMAnimeEntry(@NonNull String anime, @NonNull String typeOfQuality, String botName, String numberOfEpisodes, String numberOfDownloadedEpisodes) {
+        this.animeName = anime;
+        this.typeOfQuality = typeOfQuality;
+        this.botName = botName;
+        this.numberOfEpisodes = numberOfEpisodes;
+        this.numberOfDownloadedEpisodes = numberOfDownloadedEpisodes;
     }
 }
