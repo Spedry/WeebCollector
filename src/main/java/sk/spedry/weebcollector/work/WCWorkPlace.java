@@ -24,6 +24,7 @@ public class WCWorkPlace {
     public void addNewAnimeEntry(WCMessage wcMessage) {
         final ObservableList<WCMAnimeEntry> wcmAnimeEntryObservableList = WeebCollectorController.wcmAnimeEntryObservableList;
         wcmAnimeEntryObservableList.clear();
+        wcmAnimeEntryObservableList.add(new WCMAnimeEntry("Test Anime Entry Test Anime Entry", "1080p", "Bot", "24", "8"));
         AnimeList animeList = new Gson().fromJson(wcMessage.getMessageBody(), AnimeList.class);
         wcmAnimeEntryObservableList.addAll(animeList.getAnimeList());
         for (WCMAnimeEntry animeEntry : animeList.getAnimeList()) {
