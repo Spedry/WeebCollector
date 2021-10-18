@@ -42,13 +42,16 @@ public class AnimeCell extends ListCell<WCMAnimeEntry> {
     }
 
     @Override
-    protected void updateItem(WCMAnimeEntry WCMAnimeEntry, boolean empty) {
-        super.updateItem(WCMAnimeEntry, empty);
+    protected void updateItem(WCMAnimeEntry wcmAnimeEntry, boolean empty) {
+        super.updateItem(wcmAnimeEntry, empty);
         setGraphic(null);
 
-        if (WCMAnimeEntry != null && !empty) {
-            animeName.setText(WCMAnimeEntry.getAnimeName());
-            numberOfEpisodes.setText("15/" + WCMAnimeEntry.getNumberOfEpisodes());
+        if (wcmAnimeEntry != null && !empty) {
+            animeName.setText(wcmAnimeEntry.getAnimeName());
+            if (wcmAnimeEntry.getNumberOfEpisodes() == null)
+                numberOfEpisodes.setText("/...");
+            else
+                numberOfEpisodes.setText(wcmAnimeEntry.getNumberOfDownloadedEpisodes() + "/" + wcmAnimeEntry.getNumberOfEpisodes());
             setGraphic(animeEntry);
         }
     }
@@ -61,6 +64,5 @@ public class AnimeCell extends ListCell<WCMAnimeEntry> {
     @FXML
     public void onActionEditEntry(ActionEvent actionEvent) {
         logger.trace("Edit entry button was pressed");
-
     }
 }
