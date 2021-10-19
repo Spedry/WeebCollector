@@ -62,7 +62,7 @@ public class WeebCollectorController extends ClientMessageSender implements Init
     private void animeListView() {
         logger.debug("Creating animeListView");
         animeListView.setItems(wcmAnimeEntryObservableList);
-        animeListView.setCellFactory(param -> new AnimeCell());
+        animeListView.setCellFactory(param -> new AnimeCell(window, getSender()));
     }
 
     @FXML
