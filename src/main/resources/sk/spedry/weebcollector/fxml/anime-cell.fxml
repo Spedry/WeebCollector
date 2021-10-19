@@ -10,7 +10,7 @@
    <children>
       <Label fx:id="animeName" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="20.0" text="Anime nameAnime nameAnime nameAnime name" HBox.hgrow="ALWAYS" />
       <Label fx:id="numberOfEpisodes" alignment="CENTER" minHeight="-Infinity" minWidth="50.0" prefHeight="20.0" text="100/100" textAlignment="CENTER" />
-      <Button fx:id="deleteEntryButton" alignment="CENTER" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#onActionDeleteEntry" prefHeight="30.0" prefWidth="30.0">
+      <Button alignment="CENTER" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#onActionDeleteEntry" prefHeight="30.0" prefWidth="30.0">
          <graphic>
             <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -19,7 +19,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="editEntryButton" alignment="CENTER" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#onActionEditEntry" prefHeight="30.0" prefWidth="30.0">
+      <Button alignment="CENTER" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#onActionEditEntry" prefHeight="30.0" prefWidth="30.0">
          <graphic>
             <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                <image>
