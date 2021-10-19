@@ -33,4 +33,8 @@ public class ClientMessageSender {
             logger.error(e);
         }
     }
+
+    public ClientMessageSender getSender() {
+        return this;
+    }
 }
