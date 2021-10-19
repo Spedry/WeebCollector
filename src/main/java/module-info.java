@@ -10,4 +10,5 @@ module sk.spedry.weebcollector {
     opens sk.spedry.weebcollector.app.controllers to javafx.fxml;
     opens sk.spedry.weebcollector.app.controllers.cell to javafx.fxml;
     opens sk.spedry.weebcollector.app.controllers.preferencescontrollers to javafx.fxml;
+    opens sk.spedry.weebcollector.app.controllers.util.exteders to javafx.fxml;
 }
