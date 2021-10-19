@@ -33,7 +33,6 @@ public class AddNewAnimeController extends AnimeController {
                 qualityChoiceBox.getValue(),
                 botName,
                 numberOfEp)));
-        //sendMessage(new WCMessage("getAnimeList"));
         //TODO
         // ADD OPTIONS TO CHOOSE IF USER WANT TO CLOSE STAGE
         // AFTER ADDING NEW ANIME ENTRY
