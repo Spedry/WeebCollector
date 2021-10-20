@@ -18,7 +18,7 @@ import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class AnimeController extends ClientMessageSender implements Initializable {
+public class AnimeController extends ClientMessageSender {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
 
@@ -33,10 +33,10 @@ public class AnimeController extends ClientMessageSender implements Initializabl
 
     public final ObservableList<CodeTable> qualityTypeObservableList = FXCollections
             .observableArrayList(
-                    new CodeTable(1, "480p"),
-                    new CodeTable(2, "540p"),
-                    new CodeTable(3, "720p"),
-                    new CodeTable(4, "1080p"));
+                    new CodeTable(0, "480p"),
+                    new CodeTable(1, "540p"),
+                    new CodeTable(2, "720p"),
+                    new CodeTable(3, "1080p"));
 
     public AnimeController(PrintWriter out) {
         super(out);
@@ -54,13 +54,9 @@ public class AnimeController extends ClientMessageSender implements Initializabl
         stage.close();
     }
     public void setHandler() {
-        numberOfEpisodesTextField.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue,
-                                String newValue) {
-                if (!newValue.matches("\\d*")) {
-                    numberOfEpisodesTextField.setText(newValue.replaceAll("[^\\d]", ""));
-                }
+        numberOfEpisodesTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                numberOfEpisodesTextField.setText(newValue.replaceAll("[^\\d]", ""));
             }
         });
     }
@@ -68,12 +64,5 @@ public class AnimeController extends ClientMessageSender implements Initializabl
     public void initChoiceBox() {
         logger.debug("initializing Choice Box");
         qualityChoiceBox.getItems().setAll(qualityTypeObservableList);
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        logger.trace("Initializing");
-        initChoiceBox();
-        setHandler();
     }
 }
