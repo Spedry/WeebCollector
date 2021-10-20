@@ -57,7 +57,7 @@ public class AnimeCell extends ListCell<WCMAnimeEntry> {
         setGraphic(null);
 
         if (animeEntry != null && !empty) {
-            //this.animeEntry = wcmAnimeEntry;
+            this.animeEntry = animeEntry;
             animeName.setText(animeEntry.getAnimeName());
             if (animeEntry.getNumberOfEpisodes() == null)
                 numberOfEpisodes.setText("/...");
@@ -71,9 +71,8 @@ public class AnimeCell extends ListCell<WCMAnimeEntry> {
     public void onActionDeleteEntry(ActionEvent actionEvent) {
         logger.trace("Delete entry button was pressed");
 
+        sender.sendMessage(new WCMessage("removeAnimeFromList", animeEntry));
         WeebCollectorController.wcmAnimeEntryObservableList.remove(animeEntry);
-        sender.sendMessage(new WCMessage("removeAnimeFromList"));
-
     }
 
     @FXML
