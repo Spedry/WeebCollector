@@ -1,5 +1,7 @@
 package sk.spedry.weebcollector.app.controllers.util.exteders;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -51,6 +53,17 @@ public class AnimeController extends ClientMessageSender implements Initializabl
         Stage stage = (Stage) animeNameTextField.getScene().getWindow();
         stage.close();
     }
+    public void setHandler() {
+        numberOfEpisodesTextField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue,
+                                String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    numberOfEpisodesTextField.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
+    }
 
     public void initChoiceBox() {
         logger.debug("initializing Choice Box");
@@ -61,5 +74,6 @@ public class AnimeController extends ClientMessageSender implements Initializabl
     public void initialize(URL location, ResourceBundle resources) {
         logger.trace("Initializing");
         initChoiceBox();
+        setHandler();
     }
 }
