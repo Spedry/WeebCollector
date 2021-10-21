@@ -83,24 +83,24 @@ public class ClientMessageHandler implements Runnable {
     public void run() {
         loop: while (true) {
             try {
-                WCMessage wcm = wcMsgQueue.take();
-                logger.debug("Received id: " + wcm.getMessageId());
-                switch (wcm.getMessageId()) {
+                WCMessage msg = wcMsgQueue.take();
+                logger.debug("Received id: " + msg.getMessageId());
+                switch (msg.getMessageId()) {
                     case "addNewAnimeEntry":
                     case "getAnimeList":
-                        wcWork.addNewAnimeEntry(wcm);
+                        wcWork.addNewAnimeEntry(msg);
                         break;
                     case "setSetup":
-                        wcWork.setSetup(wcm);
+                        wcWork.setSetup(msg);
                         break;
 
                     default:
-                        throw new Exception("Unknown id: " + wcm.getMessageId() + ": " + wcm.getMessageBody());
+                        throw new Exception("Unknown id: " + msg.getMessageId() + ": " + msg.getMessageBody());
                 } // SWITCH
 
 
             } catch (Exception e) {
-
+                logger.error(e);
             }
         }
     }
