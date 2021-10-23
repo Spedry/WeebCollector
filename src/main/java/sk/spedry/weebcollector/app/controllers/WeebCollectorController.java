@@ -1,5 +1,7 @@
 package sk.spedry.weebcollector.app.controllers;
 
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -46,7 +48,8 @@ public class WeebCollectorController extends ClientMessageSender implements Init
     @FXML
     private Label downloadingAnimeLabel;
     @FXML
-    private ProgressBar  downloadingAnimeProgressBar;
+    public ProgressBar  downloadingAnimeProgressBar;
+    public static DoubleProperty barUpdater = new SimpleDoubleProperty();
     @FXML
     private MenuBar drag;
     private double xOffset = 0;
@@ -155,6 +158,10 @@ public class WeebCollectorController extends ClientMessageSender implements Init
         sendMessage(new WCMessage("getAnimeList"));
     }
 
+    private void initProgressBar() {
+        downloadingAnimeProgressBar.progressProperty().bind(barUpdater);
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         logger.trace("Initializing");
@@ -165,5 +172,7 @@ public class WeebCollectorController extends ClientMessageSender implements Init
         initClientSide();
 
         initObservableList();
+
+        initProgressBar();
     }
 }
