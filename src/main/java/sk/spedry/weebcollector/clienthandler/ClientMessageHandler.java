@@ -1,10 +1,10 @@
 package sk.spedry.weebcollector.clienthandler;
 
-import com.google.gson.Gson;
 import lombok.Getter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import sk.spedry.weebcollector.app.controllers.util.WCMessage;
+import sk.spedry.weebcollector.properties.Configuration;
 import sk.spedry.weebcollector.work.WCWorkPlace;
 
 import java.io.IOException;
@@ -18,11 +18,10 @@ public class ClientMessageHandler implements Runnable {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
 
-    private final String hostname;
+    private final String serverIpAddress;
     private final int port;
 
     {
-        hostname = "localhost";
         port = 50000;
     }
     @Getter
@@ -37,6 +36,11 @@ public class ClientMessageHandler implements Runnable {
 
     public ClientMessageHandler(){
         logger.trace("Creating client message handler");
+
+        serverIpAddress = new Configuration().getProperty("serverIpAddress");
+        if (serverIpAddress == null) {
+            logger.error("Firs insert your server ip address into config.properties");
+        }
         this.socket = initSocket();
         if (socket != null) {
             this.out = initPrintWriter();
@@ -47,7 +51,7 @@ public class ClientMessageHandler implements Runnable {
 
     private Socket initSocket() {
         try {
-            return new Socket(hostname, port);
+            return new Socket(serverIpAddress, port);
         } catch (UnknownHostException e) {
             logger.error("Error during creating socket: unknown host", e);
         } catch (IOException e) {
@@ -81,27 +85,38 @@ public class ClientMessageHandler implements Runnable {
 
     @Override
     public void run() {
-        loop: while (true) {
-            try {
-                WCMessage msg = wcMsgQueue.take();
-                logger.debug("Received id: " + msg.getMessageId());
-                switch (msg.getMessageId()) {
-                    case "addNewAnimeEntry":
-                    case "getAnimeList":
-                        wcWork.addNewAnimeEntry(msg);
-                        break;
-                    case "setSetup":
-                        wcWork.setSetup(msg);
-                        break;
+        if (socket != null)
+            loop: while (true) {
+                try {
+                    WCMessage wcMessage = wcMsgQueue.take();
+                    logger.debug("Received id: " + wcMessage.getMessageId());
+                    switch (wcMessage.getMessageId()) {
+                        case "addNewAnimeEntry":
+                        case "getAnimeList":
+                        case "editAnimeEntry":
+                            wcWork.addNewAnimeEntry(wcMessage);
+                            break;
+                        case "setSetup":
+                            wcWork.setSetup(wcMessage);
+                            break;
+                        case "setProgress":
+                            wcWork.setDownloadingAnimeProgressBar(wcMessage);
+                            break;
 
-                    default:
-                        throw new Exception("Unknown id: " + msg.getMessageId() + ": " + msg.getMessageBody());
-                } // SWITCH
+                        case "turningOff":
+                            logger.debug(wcMessage.getMessageBody());
+                            break loop;
+
+                        default:
+                            throw new Exception("Unknown id: " + wcMessage.getMessageId() + ": " + wcMessage.getMessageBody());
+                    } // SWITCH
 
 
-            } catch (Exception e) {
-                logger.error(e);
+                } catch (Exception e) {
+                    logger.error(e);
+                }
             }
-        }
+        else
+            logger.warn("Socket is null");
     }
 }
