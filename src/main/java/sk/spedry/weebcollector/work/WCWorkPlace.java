@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 import sk.spedry.weebcollector.app.controllers.PreferencesPopupController;
 import sk.spedry.weebcollector.app.controllers.WeebCollectorController;
 import sk.spedry.weebcollector.app.controllers.util.WCMAnimeEntry;
+import sk.spedry.weebcollector.app.controllers.util.WCMProgress;
 import sk.spedry.weebcollector.app.controllers.util.WCMSetup;
 import sk.spedry.weebcollector.app.controllers.util.WCMessage;
 import sk.spedry.weebcollector.app.controllers.util.lists.AnimeList;
@@ -32,5 +33,10 @@ public class WCWorkPlace {
 
     public void setSetup(WCMessage wcMessage) {
         PreferencesPopupController.setup = new Gson().fromJson(wcMessage.getMessageBody(), WCMSetup.class);
+    }
+
+    public void setDownloadingAnimeProgressBar(WCMessage wcMessage) {
+        WCMProgress progress = new Gson().fromJson(wcMessage.getMessageBody(), WCMProgress.class);
+        WeebCollectorController.barUpdater.set(progress.getProgress());
     }
 }
