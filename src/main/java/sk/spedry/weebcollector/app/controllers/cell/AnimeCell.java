@@ -60,7 +60,7 @@ public class AnimeCell extends ListCell<WCMAnimeEntry> {
             this.animeEntry = animeEntry;
             animeName.setText(animeEntry.getAnimeName());
             if (animeEntry.getNumberOfEpisodes() == null)
-                numberOfEpisodes.setText("/...");
+                numberOfEpisodes.setText("/?");
             else
                 numberOfEpisodes.setText(animeEntry.getNumberOfDownloadedEpisodes() + "/" + animeEntry.getNumberOfEpisodes());
             setGraphic(animeEntryHBox);
