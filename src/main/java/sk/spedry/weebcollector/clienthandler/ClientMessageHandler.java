@@ -91,11 +91,12 @@ public class ClientMessageHandler implements Runnable {
                     WCMessage wcMessage = wcMsgQueue.take();
                     logger.debug("Received id: " + wcMessage.getMessageId());
                     switch (wcMessage.getMessageId()) {
-                        case "addNewAnimeEntry":
                         case "getAnimeList":
                         case "editAnimeEntry":
+                        case "addNewAnimeEntry":
                             wcWork.addNewAnimeEntry(wcMessage);
                             break;
+                        case "getSetup":
                         case "setSetup":
                             wcWork.setSetup(wcMessage);
                             break;
