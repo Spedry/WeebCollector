@@ -1,11 +1,8 @@
 package sk.spedry.weebcollector.app.controllers.util.exteders;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -15,8 +12,6 @@ import sk.spedry.weebcollector.app.controllers.choiceboxitems.CodeTable;
 import sk.spedry.weebcollector.clienthandler.ClientMessageSender;
 
 import java.io.PrintWriter;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class AnimeController extends ClientMessageSender {
 
@@ -30,7 +25,7 @@ public class AnimeController extends ClientMessageSender {
     public ChoiceBox<CodeTable> qualityChoiceBox;
     @FXML
     public TextField numberOfEpisodesTextField;
-
+    //TODO COMBINE 480P/540P
     public final ObservableList<CodeTable> qualityTypeObservableList = FXCollections
             .observableArrayList(
                     new CodeTable(0, "480p"),
@@ -53,6 +48,7 @@ public class AnimeController extends ClientMessageSender {
         Stage stage = (Stage) animeNameTextField.getScene().getWindow();
         stage.close();
     }
+
     public void setHandler() {
         numberOfEpisodesTextField.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("\\d*")) {
