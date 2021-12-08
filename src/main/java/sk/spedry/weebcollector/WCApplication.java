@@ -11,6 +11,7 @@ import org.apache.logging.log4j.Logger;
 import sk.spedry.weebcollector.app.controllers.WeebCollectorController;
 import sk.spedry.weebcollector.clienthandler.ClientMessageHandler;
 import sk.spedry.weebcollector.clienthandler.ClientSocketCloser;
+import sk.spedry.weebcollector.properties.Configuration;
 
 import java.io.IOException;
 
@@ -30,6 +31,7 @@ public class WCApplication extends javafx.application.Application {
             loader.setController(weebCollectorController);
             Parent root = loader.load();
             Scene login = new Scene(root);
+            primaryStage.setAlwaysOnTop(Boolean.parseBoolean(new Configuration().getProperty("alwaysOnTop")));
             primaryStage.initStyle(StageStyle.UNDECORATED);
             primaryStage.setScene(login);
             primaryStage.show();
