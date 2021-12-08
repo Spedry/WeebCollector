@@ -46,7 +46,7 @@ public class WeebCollectorController extends ClientMessageSender implements Init
     @FXML
     private Button refreshButton;
     @FXML
-    private Label downloadingAnimeLabel;
+    public static Label downloadingAnimeLabel;
     @FXML
     public ProgressBar  downloadingAnimeProgressBar;
     public static DoubleProperty barUpdater = new SimpleDoubleProperty();
