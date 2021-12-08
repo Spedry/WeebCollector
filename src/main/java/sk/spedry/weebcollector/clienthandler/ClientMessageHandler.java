@@ -103,6 +103,9 @@ public class ClientMessageHandler implements Runnable {
                         case "setProgress":
                             wcWork.setDownloadingAnimeProgressBar(wcMessage);
                             break;
+                        case "setDownloadingAnimeName":
+                            wcWork.setDownloadingAnimeName(wcMessage);
+                            break;
 
                         case "turningOff":
                             logger.debug(wcMessage.getMessageBody());
