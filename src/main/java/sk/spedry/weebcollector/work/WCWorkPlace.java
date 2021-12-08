@@ -1,16 +1,20 @@
 package sk.spedry.weebcollector.work;
 
 import com.google.gson.Gson;
+
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import sk.spedry.weebcollector.app.controllers.PreferencesPopupController;
 import sk.spedry.weebcollector.app.controllers.WeebCollectorController;
 import sk.spedry.weebcollector.app.controllers.util.WCMAnimeEntry;
 import sk.spedry.weebcollector.app.controllers.util.WCMProgress;
 import sk.spedry.weebcollector.app.controllers.util.WCMSetup;
 import sk.spedry.weebcollector.app.controllers.util.WCMessage;
+import sk.spedry.weebcollector.app.controllers.util.WCMAnimeName;
 import sk.spedry.weebcollector.app.controllers.util.lists.AnimeList;
 
 public class WCWorkPlace {
@@ -38,5 +42,10 @@ public class WCWorkPlace {
     public void setDownloadingAnimeProgressBar(WCMessage wcMessage) {
         WCMProgress progress = new Gson().fromJson(wcMessage.getMessageBody(), WCMProgress.class);
         WeebCollectorController.barUpdater.set(progress.getProgress());
+    }
+
+    public void setDownloadingAnimeName(WCMessage wcMessage) {
+        WCMAnimeName animeName = new Gson().fromJson(wcMessage.getMessageBody(), WCMAnimeName.class);
+        WeebCollectorController.downloadingAnimeLabel.setText("Downloading: " + animeName.getAnimName());
     }
 }
