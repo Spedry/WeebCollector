@@ -51,7 +51,7 @@
                   <Font size="3.0" />
                </font>
             </Label>
-            <TextField fx:id="botTextField" maxWidth="140.0" prefHeight="35.0" prefWidth="120.0" promptText="\@Bot" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="botTextField" disable="true" maxWidth="140.0" prefHeight="35.0" prefWidth="120.0" promptText="\@Bot" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
          <VBox.margin>
             <Insets />
