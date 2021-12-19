@@ -27,9 +27,10 @@ public class EditAnimeController extends AnimeController implements Initializabl
     @FXML
     @Override
     public void onActionSave() {
-        String botName = null, numberOfEp = null;
+        String botName = null;
+        int numberOfEp = 0;
         if (!numberOfEpisodesTextField.getText().isEmpty())
-            numberOfEp = numberOfEpisodesTextField.getText();
+            numberOfEp = Integer.parseInt(numberOfEpisodesTextField.getText());
         if (!botTextField.getText().isEmpty())
             botName = botTextField.getText();
         WCMAnimeEntry animeEntry = new WCMAnimeEntry(animeNameTextField.getText(), qualityChoiceBox.getValue(), botName, numberOfEp);
@@ -43,7 +44,7 @@ public class EditAnimeController extends AnimeController implements Initializabl
         animeNameTextField.setText(animeEntry.getAnimeName());
         qualityChoiceBox.getSelectionModel().select(animeEntry.getTypeOfQuality().getId());
         botTextField.setText(animeEntry.getBotName());
-        numberOfEpisodesTextField.setText(animeEntry.getNumberOfEpisodes());
+        numberOfEpisodesTextField.setText(String.valueOf(animeEntry.getNumberOfEpisodes()));
     }
 
     @Override
@@ -52,5 +53,7 @@ public class EditAnimeController extends AnimeController implements Initializabl
         initChoiceBox();
         setHandler();
         fillFields();
+        hBox.setVisible(false);
+        checkBox.setVisible(false);
     }
 }
