@@ -59,7 +59,7 @@ public class AnimeCell extends ListCell<WCMAnimeEntry> {
         if (animeEntry != null && !empty) {
             this.animeEntry = animeEntry;
             animeName.setText(animeEntry.getAnimeName());
-            if (animeEntry.getNumberOfEpisodes() == null)
+            if (animeEntry.getNumberOfEpisodes() == 0)
                 numberOfEpisodes.setText("/?");
             else
                 numberOfEpisodes.setText(animeEntry.getNumberOfDownloadedEpisodes() + "/" + animeEntry.getNumberOfEpisodes());
