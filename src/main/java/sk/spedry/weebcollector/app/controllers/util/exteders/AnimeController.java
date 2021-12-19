@@ -3,9 +3,12 @@ package sk.spedry.weebcollector.app.controllers.util.exteders;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import sk.spedry.weebcollector.app.controllers.choiceboxitems.CodeTable;
@@ -25,6 +28,16 @@ public class AnimeController extends ClientMessageSender {
     public ChoiceBox<CodeTable> qualityChoiceBox;
     @FXML
     public TextField numberOfEpisodesTextField;
+    @FXML
+    public CheckBox checkBox;
+    @FXML
+    public HBox hBox;
+    @FXML
+    public TextField numberOfEpisodesToDownloadTextField;
+    public boolean check = false;
+    @FXML
+    public TextField numberOfEpisodesTextField2;
+
     //TODO COMBINE 480P/540P
     public final ObservableList<CodeTable> qualityTypeObservableList = FXCollections
             .observableArrayList(
@@ -47,6 +60,22 @@ public class AnimeController extends ClientMessageSender {
         logger.debug("Closing scene");
         Stage stage = (Stage) animeNameTextField.getScene().getWindow();
         stage.close();
+    }
+
+    @FXML
+    public void onActionDownAlrReleasedCheck() {
+        if(check) {
+            numberOfEpisodesTextField.setText(numberOfEpisodesTextField2.getText());
+            numberOfEpisodesTextField2.clear();
+            check = false;
+        }
+        else {
+            numberOfEpisodesTextField2.setText(numberOfEpisodesTextField.getText());
+            numberOfEpisodesTextField.clear();
+            check = true;
+        }
+        numberOfEpisodesTextField.setVisible(!check);
+        hBox.setVisible(check);
     }
 
     public void setHandler() {
