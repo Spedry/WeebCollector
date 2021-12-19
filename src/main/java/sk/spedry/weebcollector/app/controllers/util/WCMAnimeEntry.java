@@ -17,20 +17,20 @@ public class WCMAnimeEntry {
     private final String botName;
     @Getter
     @Setter
-    private String numberOfEpisodes;
+    private int numberOfEpisodes;
     @Getter
     @Setter
     private int numberOfDownloadedEpisodes;
     // TODO FOR FUTURE private String status;
 
-    public WCMAnimeEntry(@NonNull String anime, @NonNull CodeTable typeOfQuality, String botName, String numberOfEpisodes) {
+    public WCMAnimeEntry(@NonNull String anime, @NonNull CodeTable typeOfQuality, String botName, int numberOfEpisodes) {
         this.animeName = anime;
         this.typeOfQuality = typeOfQuality;
         this.botName = botName;
         this.numberOfEpisodes = numberOfEpisodes;
     }
     // TODO DELETE LATER
-    public WCMAnimeEntry(@NonNull String anime, @NonNull CodeTable typeOfQuality, String botName, String numberOfEpisodes, int numberOfDownloadedEpisodes) {
+    public WCMAnimeEntry(@NonNull String anime, @NonNull CodeTable typeOfQuality, String botName, int numberOfEpisodes, int numberOfDownloadedEpisodes) {
         this.animeName = anime;
         this.typeOfQuality = typeOfQuality;
         this.botName = botName;
