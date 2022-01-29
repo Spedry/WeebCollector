@@ -89,7 +89,8 @@ public class ClientMessageHandler implements Runnable {
             loop: while (true) {
                 try {
                     WCMessage wcMessage = wcMsgQueue.take();
-                    logger.debug("Received id: " + wcMessage.getMessageId());
+                    if (!wcMessage.getMessageId().equals("setProgress"))
+                        logger.debug("Received id: " + wcMessage.getMessageId());
                     switch (wcMessage.getMessageId()) {
                         case "getAnimeList":
                         case "editAnimeEntry":
@@ -106,6 +107,10 @@ public class ClientMessageHandler implements Runnable {
                         case "setDownloadingAnimeName":
                             wcWork.setDownloadingAnimeName(wcMessage);
                             break;
+                        case "setAnimeToOpen":
+                            wcWork.setAnimeToOpen(wcMessage);
+                            break;
+
 
                         case "turningOff":
                             logger.debug(wcMessage.getMessageBody());
