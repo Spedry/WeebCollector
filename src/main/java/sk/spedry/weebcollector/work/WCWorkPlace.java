@@ -29,10 +29,10 @@ public class WCWorkPlace {
             wcmAnimeEntryObservableList.clear();
             AnimeList animeList = new Gson().fromJson(wcMessage.getMessageBody(), AnimeList.class);
             wcmAnimeEntryObservableList.addAll(animeList.getAnimeList());
+            for (WCMAnimeEntry animeEntry : wcmAnimeEntryObservableList) {
+                logger.info(animeEntry.getAnimeName());
+            }
         });
-        for (WCMAnimeEntry animeEntry : wcmAnimeEntryObservableList) {
-            logger.info(animeEntry.getAnimeName());
-        }
     }
 
     public void setSetup(WCMessage wcMessage) {
