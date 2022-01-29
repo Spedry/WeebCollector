@@ -1,27 +1,31 @@
 package sk.spedry.weebcollector.app.controllers.cell;
 
+import java.awt.Desktop;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import sk.spedry.weebcollector.WCApplication;
 import sk.spedry.weebcollector.app.controllers.EditAnimeController;
 import sk.spedry.weebcollector.app.controllers.WeebCollectorController;
 import sk.spedry.weebcollector.app.controllers.util.WCMAnimeEntry;
 import sk.spedry.weebcollector.app.controllers.util.WCMessage;
 import sk.spedry.weebcollector.clienthandler.ClientMessageSender;
+import sk.spedry.weebcollector.properties.Configuration;
 
+import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 public class AnimeCell extends ListCell<WCMAnimeEntry> {
 
@@ -37,6 +41,8 @@ public class AnimeCell extends ListCell<WCMAnimeEntry> {
     public Label animeName;
     @FXML
     public Label numberOfEpisodes;
+
+    static String animeToOpen = null;
 
     public AnimeCell(Stage window, ClientMessageSender sender) {
         super();
@@ -93,6 +99,64 @@ public class AnimeCell extends ListCell<WCMAnimeEntry> {
             popup.show();
         } catch (IOException e) {
             logger.error("FXML loader", e);
+        }
+    }
+
+    @FXML
+    public void onMouseClickedOpenLastEpisode() {
+        logger.debug("Opening last downloaded anime");
+        // /media/spedry/CloudDrive - one/CloudShare
+        // \\spedry-desktop\CloudShare
+        //File file = new File("\\\\spedry-desktop\\CloudShare\\Kimetsu no Yaiba - Yuukaku-hen\\Kimetsu no Yaiba - Yuukaku-hen[SubsPlease] Kimetsu no Yaiba - Yuukaku-hen - 07 (1080p) [0292F145].mkv");
+
+        sender.sendMessage(new WCMessage("getAnimeToOpen", animeName.getText()));
+
+        String pathToAnime = new Configuration().getProperty("pathToAnime");
+
+        /*if (pathToAnime.equals("")) {
+            logger.error("TODO get anime download folder from server");
+            return;
+        }*/
+
+        Thread openAnime = new Thread(() -> {
+            logger.debug("Waiting");
+            synchronized (AnimeCell.class) {
+                try {
+                    AnimeCell.class.wait();
+                } catch (InterruptedException e) {
+                    logger.error("Couldn't wait");
+                }
+            }
+            logger.debug("Not waiting");
+
+            logger.debug("pathToAnime: {}", pathToAnime);
+            logger.debug("animeToOpen: {}", animeToOpen);
+            logger.debug(pathToAnime + "\\" + animeToOpen);
+
+            File file = new File(pathToAnime + "\\" + animeToOpen);
+
+            if(!Desktop.isDesktopSupported()) {
+                System.out.println("not supported");
+                return;
+            }
+            Desktop desktop = Desktop.getDesktop();
+            if(file.exists()) {
+                try {
+                    desktop.open(file);
+                } catch (IOException e) {
+                    logger.error("Couldn't open last downloaded episode");
+                }
+            }
+            animeToOpen = null;
+        });
+        openAnime.setDaemon(true);
+        openAnime.start();
+    }
+
+    public static void setAnimeToOpen(String a) {
+        animeToOpen = a;
+        synchronized (AnimeCell.class) {
+            AnimeCell.class.notify();
         }
     }
 }
