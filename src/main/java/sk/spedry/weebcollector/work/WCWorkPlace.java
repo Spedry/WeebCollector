@@ -10,6 +10,7 @@ import org.apache.logging.log4j.Logger;
 
 import sk.spedry.weebcollector.app.controllers.PreferencesPopupController;
 import sk.spedry.weebcollector.app.controllers.WeebCollectorController;
+import sk.spedry.weebcollector.app.controllers.cell.AnimeCell;
 import sk.spedry.weebcollector.app.controllers.util.WCMAnimeEntry;
 import sk.spedry.weebcollector.app.controllers.util.WCMProgress;
 import sk.spedry.weebcollector.app.controllers.util.WCMSetup;
@@ -45,7 +46,14 @@ public class WCWorkPlace {
     }
 
     public void setDownloadingAnimeName(WCMessage wcMessage) {
-        WCMAnimeName animeName = new Gson().fromJson(wcMessage.getMessageBody(), WCMAnimeName.class);
-        WeebCollectorController.downloadingAnimeLabel.setText("Downloading: " + animeName.getAnimName());
+        Platform.runLater(() -> {
+            WCMAnimeName animeName = new Gson().fromJson(wcMessage.getMessageBody(), WCMAnimeName.class);
+            WeebCollectorController.labelUpdate.set("Downloading: " + animeName.getAnimName());
+        });
+    }
+
+    public void setAnimeToOpen(WCMessage wcMessage) {
+        String animeToOpen = new Gson().fromJson(wcMessage.getMessageBody(), String.class);
+        AnimeCell.setAnimeToOpen(animeToOpen);
     }
 }
