@@ -12,10 +12,8 @@ import sk.spedry.weebcollector.app.controllers.PreferencesPopupController;
 import sk.spedry.weebcollector.app.controllers.WeebCollectorController;
 import sk.spedry.weebcollector.app.controllers.cell.AnimeCell;
 import sk.spedry.weebcollector.app.controllers.util.WCMAnimeEntry;
-import sk.spedry.weebcollector.app.controllers.util.WCMProgress;
 import sk.spedry.weebcollector.app.controllers.util.WCMSetup;
 import sk.spedry.weebcollector.app.controllers.util.WCMessage;
-import sk.spedry.weebcollector.app.controllers.util.WCMAnimeName;
 import sk.spedry.weebcollector.app.controllers.util.lists.AnimeList;
 
 public class WCWorkPlace {
@@ -41,14 +39,14 @@ public class WCWorkPlace {
     }
 
     public void setDownloadingAnimeProgressBar(WCMessage wcMessage) {
-        WCMProgress progress = new Gson().fromJson(wcMessage.getMessageBody(), WCMProgress.class);
-        WeebCollectorController.barUpdater.set(progress.getProgress());
+        double progress = new Gson().fromJson(wcMessage.getMessageBody(), double.class);
+        WeebCollectorController.barUpdater.set(progress);
     }
 
     public void setDownloadingAnimeName(WCMessage wcMessage) {
         Platform.runLater(() -> {
-            WCMAnimeName animeName = new Gson().fromJson(wcMessage.getMessageBody(), WCMAnimeName.class);
-            WeebCollectorController.labelUpdate.set("Downloading: " + animeName.getAnimName());
+            String animeName = new Gson().fromJson(wcMessage.getMessageBody(), String.class);
+            WeebCollectorController.labelUpdate.set("Downloading: " + animeName);
         });
     }
 
