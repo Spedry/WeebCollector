@@ -8,7 +8,7 @@
 
 <HBox fx:id="animeEntryHBox" alignment="CENTER_RIGHT" fillHeight="false" focusTraversable="true" maxHeight="30.0" maxWidth="274.0" minHeight="30.0" prefHeight="30.0" stylesheets="@../css/anime-entry.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="animeName" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="20.0" text="Anime nameAnime nameAnime nameAnime name" HBox.hgrow="ALWAYS" />
+      <Label fx:id="animeName" maxWidth="1.7976931348623157E308" minHeight="-Infinity" onMouseClicked="#onMouseClickedOpenLastEpisode" prefHeight="20.0" text="Anime nameAnime nameAnime nameAnime name" HBox.hgrow="ALWAYS" />
       <Label fx:id="numberOfEpisodes" alignment="CENTER" minHeight="-Infinity" minWidth="50.0" prefHeight="20.0" text="100/100" textAlignment="CENTER" />
       <Button alignment="CENTER" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#onActionDeleteEntry" prefHeight="30.0" prefWidth="30.0">
          <graphic>
