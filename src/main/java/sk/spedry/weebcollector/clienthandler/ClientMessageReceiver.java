@@ -36,7 +36,6 @@ public class ClientMessageReceiver extends ClientSocketCloser implements Runnabl
             String data;
             logger.debug("Starting receiving messages");
             while ((data = br.readLine()) != null) {
-                logger.debug("Received data: " + data);
                 msgQueue.add(new Gson().fromJson(data, WCMessage.class));
             }
             logger.debug("Receiving messages ended");
