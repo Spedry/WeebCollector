@@ -87,10 +87,14 @@ public class ClientMessageHandler implements Runnable {
     public void run() {
         if (socket != null)
             loop: while (true) {
+                WCMessage wcMessage = null;
                 try {
-                    WCMessage wcMessage = wcMsgQueue.take();
+                    wcMessage = wcMsgQueue.take();
                     if (!wcMessage.getMessageId().equals("setProgress"))
                         logger.debug("Received id: " + wcMessage.getMessageId());
+                    else if (!wcMessage.getMessageId().isEmpty()) {
+                        throw new Exception("Id was empty");
+                    }
                     switch (wcMessage.getMessageId()) {
                         case "getAnimeList":
                         case "editAnimeEntry":
@@ -122,7 +126,15 @@ public class ClientMessageHandler implements Runnable {
 
 
                 } catch (Exception e) {
-                    logger.error(e);
+                    if (wcMessage != null && wcMessage.getMessageBody() == null) {
+                        logger.error("Received JSON body was null");
+                    }
+                    else if (wcMessage == null) {
+                        logger.error("couldn't receive wcMessage");
+                    }
+                    else {
+                        logger.error("Received JSON: {}, {}", wcMessage.getMessageBody(), e);
+                    }
                 }
             }
         else
