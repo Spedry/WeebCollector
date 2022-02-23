@@ -5,9 +5,11 @@ import java.awt.Desktop;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -41,6 +43,9 @@ public class AnimeCell extends ListCell<WCMAnimeEntry> {
     public Label animeName;
     @FXML
     public Label numberOfEpisodes;
+    @FXML
+    public AnchorPane wasDownloaded;
+
 
     static String animeToOpen = null;
 
@@ -69,6 +74,14 @@ public class AnimeCell extends ListCell<WCMAnimeEntry> {
                 numberOfEpisodes.setText("/?");
             else
                 numberOfEpisodes.setText(animeEntry.getNumberOfDownloadedEpisodes() + "/" + animeEntry.getNumberOfEpisodes());
+            wasDownloaded.setVisible(animeEntry.isWasDownloaded());
+            wasDownloaded.setDisable(animeEntry.isWasDownloaded());
+            logger.debug(animeEntry.getAnimeName() + " was " + animeEntry.isWasDownloaded());
+            if (!animeEntry.isWasDownloaded()) {
+                HBox.setMargin(animeName, new Insets(0, 0, 0, -7));
+            } else {
+                HBox.setMargin(animeName, new Insets(0, 0, 0, 0));
+            }
             setGraphic(animeEntryHBox);
         }
     }
@@ -105,10 +118,6 @@ public class AnimeCell extends ListCell<WCMAnimeEntry> {
     @FXML
     public void onMouseClickedOpenLastEpisode() {
         logger.debug("Opening last downloaded anime");
-        // /media/spedry/CloudDrive - one/CloudShare
-        // \\spedry-desktop\CloudShare
-        //File file = new File("\\\\spedry-desktop\\CloudShare\\Kimetsu no Yaiba - Yuukaku-hen\\Kimetsu no Yaiba - Yuukaku-hen[SubsPlease] Kimetsu no Yaiba - Yuukaku-hen - 07 (1080p) [0292F145].mkv");
-
         sender.sendMessage(new WCMessage("getAnimeToOpen", animeName.getText()));
 
         String pathToAnime = new Configuration().getProperty("pathToAnime");
