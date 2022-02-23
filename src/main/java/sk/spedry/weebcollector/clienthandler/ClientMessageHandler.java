@@ -95,6 +95,7 @@ public class ClientMessageHandler implements Runnable {
                     else if (wcMessage.getMessageId().isEmpty()) {
                         throw new Exception("Id was empty");
                     }
+                    // TODO USE ONLY ONE CASE IT'S A MESS
                     switch (wcMessage.getMessageId()) {
                         case "getAnimeList":
                         case "editAnimeEntry":
