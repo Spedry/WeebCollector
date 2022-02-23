@@ -100,6 +100,7 @@ public class ClientMessageHandler implements Runnable {
                         case "getAnimeList":
                         case "editAnimeEntry":
                         case "addNewAnimeEntry":
+                        case "animeList":
                             wcWork.addNewAnimeEntry(wcMessage);
                             break;
                         case "getSetup":
