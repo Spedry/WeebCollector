@@ -152,6 +152,7 @@ public class AnimeCell extends ListCell<WCMAnimeEntry> {
             if(file.exists()) {
                 try {
                     desktop.open(file);
+                    sender.sendMessage(new WCMessage("openLastEpisode", animeName.getText()));
                 } catch (IOException e) {
                     logger.error("Couldn't open last downloaded episode");
                 }
