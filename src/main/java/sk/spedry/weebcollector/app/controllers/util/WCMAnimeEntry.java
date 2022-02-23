@@ -21,6 +21,9 @@ public class WCMAnimeEntry {
     @Getter
     @Setter
     private int numberOfDownloadedEpisodes;
+    @Getter
+    @Setter
+    private boolean wasDownloaded;
     // TODO FOR FUTURE private String status;
 
     public WCMAnimeEntry(@NonNull String anime, @NonNull CodeTable typeOfQuality, String botName, int numberOfEpisodes) {
