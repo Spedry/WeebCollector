@@ -92,7 +92,7 @@ public class ClientMessageHandler implements Runnable {
                     wcMessage = wcMsgQueue.take();
                     if (!wcMessage.getMessageId().equals("setProgress"))
                         logger.debug("Received id: " + wcMessage.getMessageId());
-                    else if (!wcMessage.getMessageId().isEmpty()) {
+                    else if (wcMessage.getMessageId().isEmpty()) {
                         throw new Exception("Id was empty");
                     }
                     switch (wcMessage.getMessageId()) {
