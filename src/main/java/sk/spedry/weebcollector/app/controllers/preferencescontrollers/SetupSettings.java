@@ -104,7 +104,6 @@ public class SetupSettings extends ClientMessageSender implements Initializable 
     }
 
     private void handle() {
-        logger.info("test");
         startBotButton.setDisable(true);
         try {
             if (userNameTextField.getText() != null && !Objects.equals(userNameTextField.getText(), ""))
