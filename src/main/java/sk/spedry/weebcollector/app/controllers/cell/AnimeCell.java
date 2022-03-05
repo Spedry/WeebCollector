@@ -15,6 +15,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import javafx.util.Duration;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -28,6 +29,7 @@ import sk.spedry.weebcollector.properties.Configuration;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
 
 public class AnimeCell extends ListCell<WCMAnimeEntry> {
 
@@ -74,10 +76,26 @@ public class AnimeCell extends ListCell<WCMAnimeEntry> {
                 numberOfEpisodes.setText("/?");
             else
                 numberOfEpisodes.setText(animeEntry.getNumberOfDownloadedEpisodes() + "/" + animeEntry.getNumberOfEpisodes());
-            wasDownloaded.setVisible(animeEntry.isWasDownloaded());
-            wasDownloaded.setDisable(animeEntry.isWasDownloaded());
-            logger.debug(animeEntry.getAnimeName() + " was " + animeEntry.isWasDownloaded());
-            if (!animeEntry.isWasDownloaded()) {
+
+            boolean doISetMargin = false;
+
+            if (animeEntry.isWasDownloaded()) {
+                logger.debug(animeEntry.getAnimeName() + " was " + animeEntry.isWasDownloaded());
+                indicator.setStyle("-fx-background-color: #37BD54");
+                doISetMargin = true;
+            }
+            else if (animeEntry.getReleaseDate() != null && animeEntry.getReleaseDate().equals(LocalDate.now())) {
+                logger.debug("Today day matches with releaseDay");
+                indicator.setStyle("-fx-background-color: #7289DA");
+                doISetMargin = true;
+            }
+
+            indicator.setVisible(doISetMargin);
+            indicator.setDisable(doISetMargin);
+
+            if (doISetMargin) {
+                HBox.setMargin(animeName, new Insets(0, 0, 0, 0));
+            } else {
                 HBox.setMargin(animeName, new Insets(0, 0, 0, -7));
             } else {
                 HBox.setMargin(animeName, new Insets(0, 0, 0, 0));
