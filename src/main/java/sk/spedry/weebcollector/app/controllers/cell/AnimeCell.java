@@ -9,6 +9,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
@@ -46,7 +47,7 @@ public class AnimeCell extends ListCell<WCMAnimeEntry> {
     @FXML
     public Label numberOfEpisodes;
     @FXML
-    public AnchorPane wasDownloaded;
+    public AnchorPane indicator;
 
 
     static String animeToOpen = null;
@@ -72,6 +73,9 @@ public class AnimeCell extends ListCell<WCMAnimeEntry> {
         if (animeEntry != null && !empty) {
             this.animeEntry = animeEntry;
             animeName.setText(animeEntry.getAnimeName());
+            Tooltip tooltip = new Tooltip(animeEntry.getAnimeName());
+            tooltip.setShowDelay(Duration.millis(200));
+            animeName.setTooltip(tooltip);
             if (animeEntry.getNumberOfEpisodes() == 0)
                 numberOfEpisodes.setText("/?");
             else
@@ -97,9 +101,8 @@ public class AnimeCell extends ListCell<WCMAnimeEntry> {
                 HBox.setMargin(animeName, new Insets(0, 0, 0, 0));
             } else {
                 HBox.setMargin(animeName, new Insets(0, 0, 0, -7));
-            } else {
-                HBox.setMargin(animeName, new Insets(0, 0, 0, 0));
             }
+
             setGraphic(animeEntryHBox);
         }
     }
