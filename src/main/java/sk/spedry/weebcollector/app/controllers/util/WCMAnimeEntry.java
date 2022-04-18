@@ -5,6 +5,7 @@ import lombok.NonNull;
 import lombok.Setter;
 import sk.spedry.weebcollector.app.controllers.choiceboxitems.CodeTable;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 
 public class WCMAnimeEntry {
@@ -28,7 +29,10 @@ public class WCMAnimeEntry {
     private boolean wasDownloaded;
     @Getter
     @Setter
-    private LocalDate releaseDate;
+    private boolean missedEpisode;
+    @Getter
+    @Setter
+    private DayOfWeek releaseDay;
     // TODO FOR FUTURE private String status;
 
     public WCMAnimeEntry(@NonNull String anime, @NonNull CodeTable typeOfQuality, String botName, int numberOfEpisodes) {

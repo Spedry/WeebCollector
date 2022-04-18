@@ -84,12 +84,18 @@ public class AnimeCell extends ListCell<WCMAnimeEntry> {
             boolean doISetMargin = false;
 
             if (animeEntry.isWasDownloaded()) {
-                logger.debug(animeEntry.getAnimeName() + " was " + animeEntry.isWasDownloaded());
-                indicator.setStyle("-fx-background-color: #37BD54");
+                if (animeEntry.isMissedEpisode()) {
+                    logger.info(animeEntry.getAnimeName() + " was missed");
+                    indicator.setStyle("-fx-background-color: #d7a200");
+                }
+                else {
+                    logger.info(animeEntry.getAnimeName() + " was downloaded");
+                    indicator.setStyle("-fx-background-color: #37BD54");
+                }
                 doISetMargin = true;
             }
-            else if (animeEntry.getReleaseDate() != null && animeEntry.getReleaseDate().equals(LocalDate.now())) {
-                logger.debug("Today day matches with releaseDay");
+            else if (animeEntry.getReleaseDay() != null && animeEntry.getReleaseDay().equals(LocalDate.now().getDayOfWeek())) {
+                logger.info(animeEntry.getAnimeName() + "will release today");
                 indicator.setStyle("-fx-background-color: #7289DA");
                 doISetMargin = true;
             }
