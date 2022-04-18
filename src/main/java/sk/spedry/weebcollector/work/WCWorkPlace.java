@@ -15,6 +15,9 @@ import sk.spedry.weebcollector.app.controllers.util.WCMAnimeEntry;
 import sk.spedry.weebcollector.app.controllers.util.WCMSetup;
 import sk.spedry.weebcollector.app.controllers.util.WCMessage;
 import sk.spedry.weebcollector.app.controllers.util.lists.AnimeList;
+import sk.spedry.weebcollector.properties.Configuration;
+
+import java.util.Objects;
 
 public class WCWorkPlace {
 
@@ -23,6 +26,8 @@ public class WCWorkPlace {
     private final WCUtilManager manager = new WCUtilManager();
 
     public void addNewAnimeEntry(WCMessage wcMessage) {
+        if (Objects.equals(new Configuration().getProperty("showReceivedMessages"), "true"))
+            logger.debug("ID: {} MessageBody: {} AdditionalData: {}", wcMessage.getMessageId(), wcMessage.getMessageBody(), wcMessage.getAdditionalData());
         final ObservableList<WCMAnimeEntry> wcmAnimeEntryObservableList = WeebCollectorController.wcmAnimeEntryObservableList;
         Platform.runLater(() -> {
             wcmAnimeEntryObservableList.clear();
