@@ -31,7 +31,7 @@ public class WCWorkPlace {
         final ObservableList<WCMAnimeEntry> wcmAnimeEntryObservableList = WeebCollectorController.wcmAnimeEntryObservableList;
         Platform.runLater(() -> {
             wcmAnimeEntryObservableList.clear();
-            AnimeList animeList = new Gson().fromJson(wcMessage.getMessageBody(), AnimeList.class);
+            AnimeList animeList = manager.sortAnimeListByReleaseDay(new Gson().fromJson(wcMessage.getMessageBody(), AnimeList.class));
             wcmAnimeEntryObservableList.addAll(animeList.getAnimeList());
             for (WCMAnimeEntry animeEntry : wcmAnimeEntryObservableList) {
                 logger.info(animeEntry.getAnimeName());
