@@ -6,7 +6,6 @@ import lombok.Setter;
 import sk.spedry.weebcollector.app.controllers.choiceboxitems.CodeTable;
 
 import java.time.DayOfWeek;
-import java.time.LocalDate;
 
 public class WCMAnimeEntry {
     @Getter
