@@ -167,6 +167,7 @@ public class WeebCollectorController extends ClientMessageSender implements Init
 
     public void initLabelUpdater() {
         downloadingAnimeLabel.textProperty().bind(labelUpdate);
+        sendMessage(new WCMessage("getCurrentlyDownloading"));
     }
 
     @Override

@@ -51,7 +51,7 @@ public class WCWorkPlace {
     public void setDownloadingAnimeName(WCMessage wcMessage) {
         Platform.runLater(() -> {
             String animeName = new Gson().fromJson(wcMessage.getMessageBody(), String.class);
-            WeebCollectorController.labelUpdate.set("Downloading: " + animeName);
+            WeebCollectorController.labelUpdate.set("DL: " + animeName);
         });
     }
 
