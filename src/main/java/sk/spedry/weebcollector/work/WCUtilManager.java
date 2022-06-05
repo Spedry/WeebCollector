@@ -26,7 +26,7 @@ public class WCUtilManager {
     public AnimeList sortAnimeListByReleaseDay(AnimeList animeList) {
         logger.traceEntry();
         AnimeList sortedAnimeList = new AnimeList();
-        ArrayList<AnimeList> tempList = new ArrayList<AnimeList>(9);
+        ArrayList<AnimeList> tempList = new ArrayList<>(9);
         DayOfWeek today = LocalDate.now().getDayOfWeek();
 
         for (int i = 0; i < 9; i++) {
@@ -35,7 +35,10 @@ public class WCUtilManager {
 
         for (WCMAnimeEntry anime : animeList.getAnimeList()) {
             if (anime.getNumberOfDownloadedEpisodes() >= anime.getNumberOfEpisodes()) {
-                tempList.get(7).getAnimeList().add(anime);
+                if (anime.getNumberOfEpisodes() == 0)
+                    tempList.get(anime.getReleaseDay().getValue() - 1).getAnimeList().add(anime);
+                else
+                    tempList.get(7).getAnimeList().add(anime);
             } else if (anime.getReleaseDay() == null) {
                 tempList.get(8).getAnimeList().add(anime);
             }
