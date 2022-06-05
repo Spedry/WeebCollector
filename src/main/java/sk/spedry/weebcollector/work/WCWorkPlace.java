@@ -48,9 +48,10 @@ public class WCWorkPlace {
         WeebCollectorController.barUpdater.set(progress);
     }
 
-    public void setDownloadingAnimeName(WCMessage wcMessage) {
+    public void setCurrentlyDownloadingAnime(WCMessage wcMessage) {
         Platform.runLater(() -> {
             String animeName = new Gson().fromJson(wcMessage.getMessageBody(), String.class);
+            if (animeName == null) animeName = "";
             WeebCollectorController.labelUpdate.set("DL: " + animeName);
         });
     }
