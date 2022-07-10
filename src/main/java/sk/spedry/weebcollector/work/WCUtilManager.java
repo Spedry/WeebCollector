@@ -35,7 +35,7 @@ public class WCUtilManager {
 
         for (WCMAnimeEntry anime : animeList.getAnimeList()) {
             if (anime.getNumberOfDownloadedEpisodes() >= anime.getNumberOfEpisodes()) {
-                if (anime.getNumberOfEpisodes() == 0)
+                if (anime.getNumberOfEpisodes() == 0 && anime.getReleaseDay() != null)
                     tempList.get(anime.getReleaseDay().getValue() - 1).getAnimeList().add(anime);
                 else
                     tempList.get(7).getAnimeList().add(anime);
