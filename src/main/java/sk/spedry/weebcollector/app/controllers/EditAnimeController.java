@@ -30,12 +30,14 @@ public class EditAnimeController extends AnimeController implements Initializabl
         String botName = null;
         int numberOfEp = 0;
         if (!numberOfEpisodesTextField.getText().isEmpty())
-            numberOfEp = Integer.parseInt(numberOfEpisodesTextField.getText());
-        if (!botTextField.getText().isEmpty())
-            botName = botTextField.getText();
-        WCMAnimeEntry animeEntry = new WCMAnimeEntry(animeNameTextField.getText(), qualityChoiceBox.getValue(), botName, numberOfEp);
-        animeEntry.setId(animeEntry.getId());
-        WeebCollectorController.wcmAnimeEntryObservableList.set(animeEntry.getId(), animeEntry);
+            animeEntry.setAnimeName(animeNameTextField.getText());
+        if (!numberOfEpisodesTextField.getText().isEmpty())
+            animeEntry.setTypeOfQuality(qualityChoiceBox.getValue());
+        if (!numberOfEpisodesTextField.getText().isEmpty())
+            animeEntry.setNumberOfEpisodes(Integer.parseInt(numberOfEpisodesTextField.getText()));
+        /*if (!botTextField.getText().isEmpty())
+            botName = botTextField.getText();*/
+        logger.info("ANIME {} ID IS {}", animeEntry.getAnimeName(), animeEntry.getId());
         sendMessage(new WCMessage("updateAnime", animeEntry));
         onActionCancel();
     }
