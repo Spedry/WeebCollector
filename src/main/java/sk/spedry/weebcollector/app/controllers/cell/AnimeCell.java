@@ -118,7 +118,9 @@ public class AnimeCell extends ListCell<WCMAnimeEntry> {
         logger.trace("Delete entry button was pressed");
 
         sender.sendMessage(new WCMessage("removeAnimeFromList", animeEntry));
-        WeebCollectorController.wcmAnimeEntryObservableList.remove(animeEntry);
+
+        // it's better to fetch list from server
+        //WeebCollectorController.wcmAnimeEntryObservableList.remove(animeEntry);
     }
 
     @FXML
