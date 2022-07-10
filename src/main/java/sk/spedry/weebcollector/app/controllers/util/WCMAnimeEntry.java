@@ -12,11 +12,13 @@ public class WCMAnimeEntry {
     @Setter
     private int id;
     @Getter
-    private final String animeName;
+    @Setter
+    private String animeName;
     @Getter
-    private final CodeTable typeOfQuality;
+    @Setter
+    private CodeTable typeOfQuality;
     @Getter
-    private final String botName;
+    private String botName;
     @Getter
     @Setter
     private int numberOfEpisodes;
@@ -39,13 +41,5 @@ public class WCMAnimeEntry {
         this.typeOfQuality = typeOfQuality;
         this.botName = botName;
         this.numberOfEpisodes = numberOfEpisodes;
-    }
-    // TODO DELETE LATER
-    public WCMAnimeEntry(@NonNull String anime, @NonNull CodeTable typeOfQuality, String botName, int numberOfEpisodes, int numberOfDownloadedEpisodes) {
-        this.animeName = anime;
-        this.typeOfQuality = typeOfQuality;
-        this.botName = botName;
-        this.numberOfEpisodes = numberOfEpisodes;
-        this.numberOfDownloadedEpisodes = numberOfDownloadedEpisodes;
     }
 }
